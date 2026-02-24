@@ -3,4 +3,5 @@
 /.swiftpm
 /Packages
 /*.xcodeproj
-xcuserdata/.omc/
+xcuserdata/
+.omc/
