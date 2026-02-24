@@ -1,5 +1,8 @@
-#if !os(WASI) && !os(Windows) && !os(Android)
+#if !os(WASI) && !os(Windows)
   import Foundation
+  #if canImport(Android)
+    import Android
+  #endif
 
   #if compiler(>=6)
     /// Perform an operation on the main serial executor.
@@ -97,6 +100,6 @@
     set { _swift_task_enqueueGlobal_hook.wrappedValue.pointee = newValue }
   }
   private let _swift_task_enqueueGlobal_hook = UncheckedSendable(
-    dlsym(dlopen(nil, 0), "swift_task_enqueueGlobal_hook").assumingMemoryBound(to: Hook?.self)
+    dlsym(dlopen(nil, 0), "swift_task_enqueueGlobal_hook")!.assumingMemoryBound(to: Hook?.self)
   )
 #endif
